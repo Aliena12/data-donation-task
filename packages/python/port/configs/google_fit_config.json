@@ -1,0 +1,131 @@
+{
+  "platform_info": {
+    "name": "google_fit",
+    "filetypes": [
+      "zip"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "description": "Google Fit Takeout: daily steps, distance, heart rate and sleep in one table.",
+    "time_last_tested": "not yet implemented"
+  },
+  "tables": [
+    {
+      "id": "google_fit_daily",
+      "title": {
+        "en": "Daily activity & sleep",
+        "de": "Tagesaktivität & Schlaf"
+      },
+      "description": {
+        "en": "One row per day: steps, distance, heart rate and sleep. You can remove rows before donating.",
+        "de": "Eine Zeile pro Tag: Schritte, Distanz, Herzfrequenz und Schlaf. Sie können Zeilen entfernen, bevor Sie spenden."
+      },
+      "headers": {
+        "date": {
+          "en": "Date",
+          "de": "Datum"
+        },
+        "steps": {
+          "en": "Steps",
+          "de": "Schritte"
+        },
+        "distance_m": {
+          "en": "Distance (m)",
+          "de": "Distanz (m)"
+        },
+        "hr_avg_bpm": {
+          "en": "Heart rate avg (bpm)",
+          "de": "Herzfrequenz Ø (bpm)"
+        },
+        "hr_max_bpm": {
+          "en": "Heart rate max (bpm)",
+          "de": "Herzfrequenz max (bpm)"
+        },
+        "hr_min_bpm": {
+          "en": "Heart rate min (bpm)",
+          "de": "Herzfrequenz min (bpm)"
+        },
+        "sleep_duration_min": {
+          "en": "Sleep (min)",
+          "de": "Schlaf (min)"
+        },
+        "bed_hour": {
+          "en": "Bedtime (h)",
+          "de": "Einschlafen (h)"
+        },
+        "wake_hour": {
+          "en": "Waking (h)",
+          "de": "Aufwachen (h)"
+        }
+      },
+      "extractor": "daily_fit_to_df",
+      "documentation": {
+        "summary": "One row per day: steps, distance, heart rate and sleep.",
+        "source_file": "Takeout/Google Fit/Tägliche Aktivitätswerte/*.csv and Alle Sitzungen/*.json",
+        "columns": {
+          "date": "Calendar day (YYYY-MM-DD).",
+          "steps": "Step count of the day.",
+          "distance_m": "Distance in metres.",
+          "hr_avg_bpm": "Average heart rate (bpm).",
+          "hr_max_bpm": "Maximum heart rate (bpm).",
+          "hr_min_bpm": "Minimum heart rate (bpm).",
+          "sleep_duration_min": "Total sleep duration of that night, in minutes.",
+          "bed_hour": "Hour of falling asleep, local time (0-23).",
+          "wake_hour": "Hour of waking up, local time (0-23)."
+        }
+      }
+    },
+    {
+      "id": "google_fit_workouts",
+      "title": {
+        "en": "Workouts",
+        "de": "Workouts"
+      },
+      "description": {
+        "en": "One row per workout: type, duration, distance, calories and heart minutes.",
+        "de": "Eine Zeile pro Training: Typ, Dauer, Distanz, Kalorien und Herzminuten."
+      },
+      "headers": {
+        "date": {
+          "en": "Date",
+          "de": "Datum"
+        },
+        "activity": {
+          "en": "Activity",
+          "de": "Aktivität"
+        },
+        "duration_min": {
+          "en": "Duration (min)",
+          "de": "Dauer (min)"
+        },
+        "distance_m": {
+          "en": "Distance (m)",
+          "de": "Distanz (m)"
+        },
+        "calories_kcal": {
+          "en": "Calories (kcal)",
+          "de": "Kalorien (kcal)"
+        },
+        "heart_minutes": {
+          "en": "Heart minutes",
+          "de": "Herzminuten"
+        }
+      },
+      "extractor": "workouts_to_df",
+      "documentation": {
+        "summary": "One row per workout session with type, duration, distance, calories and heart minutes.",
+        "source_file": "Takeout/Google Fit/Alle Sitzungen/*.json",
+        "columns": {
+          "date": "Day of the workout (YYYY-MM-DD).",
+          "activity": "Activity type, e.g. biking (English label from Google).",
+          "duration_min": "Duration in minutes.",
+          "distance_m": "Distance in metres, if recorded.",
+          "calories_kcal": "Calories expended, if recorded.",
+          "heart_minutes": "Google Fit heart minutes, if recorded."
+        }
+      }
+    }
+  ]
+}
